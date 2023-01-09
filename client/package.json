@@ -44,10 +44,7 @@
     "packages": [
       "browser-app",
       "coffee-common",
-      "coffee-comparison",
-      "coffee-cpp-extension",
       "coffee-editor-extension",
-      "coffee-java-extension",
       "coffee-servers",
       "coffee-welcome-page",
       "coffee-workflow-analyzer",

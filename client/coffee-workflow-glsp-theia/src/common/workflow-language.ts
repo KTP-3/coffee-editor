@@ -12,8 +12,8 @@ import { GLSPDiagramLanguage } from '@eclipse-glsp/theia-integration';
 
 export const WorkflowNotationLanguage: GLSPDiagramLanguage = {
     contributionId: 'WorkflowNotation',
-    label: 'Workflow Notation diagram',
-    diagramType: 'workflow-diagram-notation',
+    label: 'BasicFamily Notation diagram',
+    diagramType: 'basicfamily-diagram-notation',
     iconClass: 'codicon codicon-type-hierarchy-sub',
     fileExtensions: ['.notation']
 };

@@ -10,24 +10,19 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.modelserver.commands.compound;
 
-import java.util.function.Supplier;
-
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.coffee.modelserver.commands.semantic.AddWeightedFlowCommand;
-import org.eclipse.emfcloud.modelserver.glsp.notation.commands.AddEdgeCommand;
 
 public class AddWeightedFlowCompoundCommand extends CompoundCommand {
 
    public AddWeightedFlowCompoundCommand(final EditingDomain domain, final URI modelUri,
       final String sourceElementId, final String targetElementId) {
-      // Chain semantic and notation command
-      AddWeightedFlowCommand command = new AddWeightedFlowCommand(domain, modelUri, sourceElementId,
-         targetElementId);
-      this.append(command);
-      Supplier<Flow> semanticResultSupplier = () -> command.getFlow();
-      this.append(new AddEdgeCommand(domain, modelUri, semanticResultSupplier));
+      // // Chain semantic and notation command
+      // AddWeightedFlowCommand command = new AddWeightedFlowCommand(domain, modelUri, sourceElementId,
+      // targetElementId);
+      // this.append(command);
+      // Supplier<Flow> semanticResultSupplier = () -> command.getFlow();
+      // this.append(new AddEdgeCommand(domain, modelUri, semanticResultSupplier));
    }
 }

@@ -14,22 +14,32 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelTypes;
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.glsp.graph.GPoint;
 
 public class CreateMergeNodeHandler extends AbstractCreateNodeHandler {
 
-   public CreateMergeNodeHandler() {
-      super(WorkflowModelTypes.MERGE_NODE);
+   public CreateMergeNodeHandler(final String type) {
+      super(type);
+      // TODO Auto-generated constructor stub
    }
 
    @Override
-   public String getLabel() { return "Merge Node"; }
-
-   @Override
-   protected Function<Optional<GPoint>, CompletableFuture<Response<String>>> getNodeCreator() {
-      return modelAccess::addMergeNode;
+   protected Function<Optional<GPoint>, CompletableFuture<Response<String>>> getNodeCreator() { // TODO Auto-generated
+                                                                                                // method stub
+      return null;
    }
+
+   // public CreateMergeNodeHandler() {
+   // super(WorkflowModelTypes.MERGE_NODE);
+   // }
+   //
+   // @Override
+   // public String getLabel() { return "Merge Node"; }
+   //
+   // @Override
+   // protected Function<Optional<GPoint>, CompletableFuture<Response<String>>> getNodeCreator() {
+   // return modelAccess::addMergeNode;
+   // }
 
 }

@@ -35,34 +35,12 @@ import { compare, Operation } from 'fast-json-patch';
 import { inject, injectable } from 'inversify';
 import { isEqual } from 'lodash';
 import { CoffeeMasterTreeWidget } from './coffee-master-tree-widget';
-
-import {
-    AutomaticTask,
-    ControlUnit,
-    Decision,
-    Dimension,
-    Display,
-    Flow,
-    Identifiable,
-    JsonPrimitiveType,
-    Machine,
-    ManualTask,
-    Merge,
-    Processor,
-    RAM
-} from './coffee-model';
-import {
-    AddAutomatedTaskCommandContribution,
-    AddDecisionNodeCommandContribution,
-    AddManualTaskCommandContribution,
-    AddMergeNodeCommandContribution,
-    RemoveFlowCommandContribution,
-    RemoveNodeCommandContribution
-} from './model-server-commands';
+import { Family, Identifiable, JsonPrimitiveType, Man, Woman } from './coffee-model';
+import { AddManCommandContribution, AddWomanCommandContribution } from './model-server-commands';
 
 @injectable()
 export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
-    protected override instanceData: Machine | undefined;
+    protected override instanceData: Family | undefined;
     private delayedRefresh = false;
 
     constructor(
@@ -98,7 +76,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
             // .get<Machine>(this.getModelID(), Machine.is, 'json-v2') // FIXME - sends format as format=%7B%7D ???
             .get(this.getModelID())
             .then(machineModel => {
-                if (isEqual(this.instanceData, machineModel) || !Machine.is(machineModel)) {
+                if (isEqual(this.instanceData, machineModel) || !Family.is(machineModel)) {
                     return;
                 }
                 this.instanceData = undefined;
@@ -120,7 +98,7 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     protected updateWidgetData(incrementalUpdate: IncrementalUpdateNotificationV2): void {
         if (Operations.isPatch(incrementalUpdate.patch)) {
             if (this.instanceData) {
-                incrementalUpdate.patchModel(this.instanceData);
+                // incrementalUpdate.patchModel(this.instanceData);
                 this.treeWidget.setData({ error: false, data: this.instanceData }).then(() => {
                     const selectPath = this.getOldSelectedPath();
                     if (this.selectedNode.id !== selectPath[0]) {
@@ -168,31 +146,27 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
     }
 
     protected async deleteNode(node: Readonly<TreeEditor.Node>): Promise<void> {
-        const data = node.jsonforms.data;
-        let patchOrCommand: PatchOrCommand;
-        if (ManualTask.is(data) || AutomaticTask.is(data) || Decision.is(data) || Merge.is(data)) {
-            patchOrCommand = RemoveNodeCommandContribution.create(data.id);
-        } else if (Flow.is(data)) {
-            patchOrCommand = RemoveFlowCommandContribution.create(data.id);
-        } else {
-            patchOrCommand = {
-                op: 'remove',
-                path: this.getOperationPath(data.id)
-            };
-        }
-        this.modelServerClient.edit(this.getModelID(), patchOrCommand);
+        // const data = node.jsonforms.data;
+        // let patchOrCommand: PatchOrCommand;
+        // if (ManualTask.is(data) || AutomaticTask.is(data) || Decision.is(data) || Merge.is(data)) {
+        //     patchOrCommand = RemoveNodeCommandContribution.create(data.id);
+        // } else if (Flow.is(data)) {
+        //     patchOrCommand = RemoveFlowCommandContribution.create(data.id);
+        // } else {
+        //     patchOrCommand = {
+        //         op: 'remove',
+        //         path: this.getOperationPath(data.id)
+        //     };
+        // }
+        // this.modelServerClient.edit(this.getModelID(), patchOrCommand);
     }
 
     protected async addNode({ node, type, property }: AddCommandProperty): Promise<void> {
         let patchOrCommand: PatchOrCommand;
-        if (type === AutomaticTask.$type) {
-            patchOrCommand = AddAutomatedTaskCommandContribution.create();
-        } else if (type === ManualTask.$type) {
-            patchOrCommand = AddManualTaskCommandContribution.create();
-        } else if (type === Decision.$type) {
-            patchOrCommand = AddDecisionNodeCommandContribution.create();
-        } else if (type === Merge.$type) {
-            patchOrCommand = AddMergeNodeCommandContribution.create();
+        if (type === Man.$type) {
+            patchOrCommand = AddManCommandContribution.create();
+        } else if (type === Woman.$type) {
+            patchOrCommand = AddWomanCommandContribution.create();
         } else {
             patchOrCommand = {
                 op: 'add',
@@ -321,27 +295,27 @@ export class CoffeeTreeEditorWidget extends NavigatableTreeEditorWidget {
                 }
             }
         });
-        // FIXME special case remove ram
-        if (id === '' && pathSegments[0] === 'ram' && ControlUnit.is(oldData) && oldData.ram) {
-            if (operation === 'remove') {
-                id = oldData.ram[0].id;
-            } else {
-                id = oldData.id;
-            }
-        }
+        // // FIXME special case remove ram
+        // if (id === '' && pathSegments[0] === 'ram' && ControlUnit.is(oldData) && oldData.ram) {
+        //     if (operation === 'remove') {
+        //         id = oldData.ram[0].id;
+        //     } else {
+        //         id = oldData.id;
+        //     }
+        // }
         return id;
     }
 
     protected getAddValue(value: any, feature: string): JsonPrimitiveType {
-        if (feature === 'ram') {
-            return { $type: RAM.$type, id: UUID.uuid4() };
-        } else if (feature === 'processor') {
-            return { $type: Processor.$type, id: UUID.uuid4(), ...value };
-        } else if (feature === 'dimension') {
-            return { $type: Dimension.$type, id: UUID.uuid4(), ...value };
-        } else if (feature === 'display') {
-            return { $type: Display.$type, id: UUID.uuid4(), ...value };
-        }
+        // if (feature === 'ram') {
+        //     return { $type: RAM.$type, id: UUID.uuid4() };
+        // } else if (feature === 'processor') {
+        //     return { $type: Processor.$type, id: UUID.uuid4(), ...value };
+        // } else if (feature === 'dimension') {
+        //     return { $type: Dimension.$type, id: UUID.uuid4(), ...value };
+        // } else if (feature === 'display') {
+        //     return { $type: Display.$type, id: UUID.uuid4(), ...value };
+        // }
         return value;
     }
 

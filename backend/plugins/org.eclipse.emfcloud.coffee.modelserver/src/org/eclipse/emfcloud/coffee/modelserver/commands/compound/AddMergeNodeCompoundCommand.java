@@ -10,23 +10,18 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.modelserver.commands.compound;
 
-import java.util.function.Supplier;
-
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.modelserver.commands.semantic.AddMergeNodeCommand;
-import org.eclipse.emfcloud.modelserver.glsp.notation.commands.AddShapeCommand;
 import org.eclipse.glsp.graph.GPoint;
 
 public class AddMergeNodeCompoundCommand extends CompoundCommand {
 
    public AddMergeNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final GPoint classPosition) {
       // Chain semantic and notation command
-      AddMergeNodeCommand command = new AddMergeNodeCommand(domain, modelUri);
-      this.append(command);
-      Supplier<Node> semanticResultSupplier = () -> command.getNode();
-      this.append(new AddShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
+      // AddMergeNodeCommand command = new AddMergeNodeCommand(domain, modelUri);
+      // this.append(command);
+      // Supplier<Node> semanticResultSupplier = () -> command.getNode();
+      // this.append(new AddShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
    }
 }

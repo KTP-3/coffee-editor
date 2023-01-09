@@ -12,9 +12,6 @@ package org.eclipse.emfcloud.coffee.modelserver.commands.semantic;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil;
 
 public class SetFlowTargetCommand extends SemanticElementCommand {
 
@@ -30,9 +27,9 @@ public class SetFlowTargetCommand extends SemanticElementCommand {
 
    @Override
    protected void doExecute() {
-      Flow flow = SemanticCommandUtil.getElement(semanticModel, semanticElementId, Flow.class);
-      Node newTarget = SemanticCommandUtil.getElement(semanticModel, newTargetElementId, Node.class);
-      flow.setTarget(newTarget);
+      // Flow flow = SemanticCommandUtil.getElement(semanticModel, semanticElementId, Flow.class);
+      // Node newTarget = SemanticCommandUtil.getElement(semanticModel, newTargetElementId, Node.class);
+      // flow.setTarget(newTarget);
    }
 
 }

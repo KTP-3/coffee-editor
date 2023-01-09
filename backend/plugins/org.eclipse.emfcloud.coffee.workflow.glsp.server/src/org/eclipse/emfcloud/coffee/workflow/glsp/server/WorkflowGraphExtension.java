@@ -12,15 +12,15 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.WfgraphFactory;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.WfgraphPackage;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.BasicfamilyFactory;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.BasicfamilyPackage;
 import org.eclipse.glsp.graph.GraphExtension;
 
 public class WorkflowGraphExtension implements GraphExtension {
    @Override
-   public EPackage getEPackage() { return WfgraphPackage.eINSTANCE; }
+   public EPackage getEPackage() { return BasicfamilyPackage.eINSTANCE; }
 
    @Override
-   public EFactory getEFactory() { return WfgraphFactory.eINSTANCE; }
+   public EFactory getEFactory() { return BasicfamilyFactory.eINSTANCE; }
 
 }

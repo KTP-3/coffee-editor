@@ -11,7 +11,6 @@
 import { DisposableCollection, MessageService, Progress } from '@theia/core';
 import URI from '@theia/core/lib/common/uri';
 import { inject, injectable } from 'inversify';
-
 import { CppCodeGenServer } from '../common/generate-protocol';
 
 @injectable()
@@ -53,6 +52,6 @@ export class GenerateCppCodeService {
     }
 
     public isWorkflowFile(fileUri: URI): boolean {
-        return fileUri.toString().endsWith('.coffee');
+        return fileUri.toString().endsWith('.basicfamily');
     }
 }

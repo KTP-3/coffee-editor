@@ -48,7 +48,7 @@ public class WorkflowSourceModelStorage extends EMSNotationSourceModelStorage {
    protected void doSubscribe() {
       super.doSubscribe();
       modelServerAccess.createValidationFramework(modelState.getClientId(), actionDispatcher);
-      modelServerAccess.subscribeToValidation();
-      modelServerAccess.initConstraintList();
+      // modelServerAccess.subscribeToValidation();
+      // modelServerAccess.initConstraintList();
    }
 }

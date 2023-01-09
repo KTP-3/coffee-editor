@@ -69,12 +69,12 @@ export class CoffeeGitIntegration implements CommandContribution {
         commands.registerCommand(
             GitDiffCommands.OPEN_FILE_DIFF,
             this.newWorkspaceRootUriAwareCommandHandler({
-                isVisible: uri => uri.toString().endsWith('.coffee') || uri.toString().endsWith('.notation'),
+                isVisible: uri => uri.toString().endsWith('.basicfamily') || uri.toString().endsWith('.notation'),
                 isEnabled: uri => true,
                 execute: async fileUri => {
-                    const isCoffeeFile = fileUri.toString().endsWith('.coffee');
-                    const currentCoffeePath = isCoffeeFile ? fileUri.toString() : fileUri.toString().replace('.notation', '.coffee');
-                    const currentNotationPath = currentCoffeePath.replace('.coffee', '.notation');
+                    const isCoffeeFile = fileUri.toString().endsWith('.basicfamily');
+                    const currentCoffeePath = isCoffeeFile ? fileUri.toString() : fileUri.toString().replace('.notation', '.basicfamily');
+                    const currentNotationPath = currentCoffeePath.replace('.basicfamily', '.notation');
 
                     // Real file paths
                     const coffeeFileName = currentCoffeePath.substring(currentCoffeePath.lastIndexOf('/') + 1);
@@ -96,7 +96,7 @@ export class CoffeeGitIntegration implements CommandContribution {
                         coffeeFileName.substring(0, coffeeFileName.lastIndexOf('.')) +
                         '@' +
                         sh?.slice(0, 7) +
-                        '.coffee';
+                        '.basicfamily';
                     const headNotationPath =
                         workspace +
                         '/.help/' +
@@ -107,7 +107,7 @@ export class CoffeeGitIntegration implements CommandContribution {
 
                     // File path for the copy of real file in the ./help subfolder
                     const copyCoffeePath =
-                        workspace + '/.help/' + coffeeFileName.substring(0, coffeeFileName.lastIndexOf('.')) + '@current.coffee';
+                        workspace + '/.help/' + coffeeFileName.substring(0, coffeeFileName.lastIndexOf('.')) + '@current.basicfamily';
                     const copyNotationPath =
                         workspace + '/.help/' + notationFileName.substring(0, notationFileName.lastIndexOf('.')) + '@current.notation';
 

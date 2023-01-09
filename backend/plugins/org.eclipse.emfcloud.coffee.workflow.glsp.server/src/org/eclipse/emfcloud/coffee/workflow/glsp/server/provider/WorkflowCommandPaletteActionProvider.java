@@ -13,12 +13,11 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server.provider;
 import static org.eclipse.glsp.graph.DefaultTypes.EDGE;
 import static org.eclipse.glsp.graph.util.GraphUtil.point;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelTypes;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.TaskNode;
+import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.Person;
 import org.eclipse.glsp.graph.GModelElement;
 import org.eclipse.glsp.graph.GModelIndex;
 import org.eclipse.glsp.graph.GNode;
@@ -28,7 +27,6 @@ import org.eclipse.glsp.server.features.directediting.LabeledAction;
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.operations.CreateEdgeOperation;
 import org.eclipse.glsp.server.operations.CreateNodeOperation;
-import org.eclipse.glsp.server.operations.DeleteOperation;
 import org.eclipse.glsp.server.types.EditorContext;
 
 import com.google.common.collect.Lists;
@@ -51,64 +49,66 @@ public class WorkflowCommandPaletteActionProvider implements CommandPaletteActio
       // Create node actions are always possible
       actions.addAll(
          Sets.newHashSet(
-            new LabeledAction("Create Automated Task",
+            new LabeledAction("Create Man",
                Lists.newArrayList(
-                  new CreateNodeOperation(WorkflowModelTypes.AUTOMATED_TASK, lastMousePosition)),
+                  new CreateNodeOperation(WorkflowModelTypes.Man, lastMousePosition)),
                "settings-gear"),
-            new LabeledAction("Create Manual Task",
-               Lists.newArrayList(new CreateNodeOperation(WorkflowModelTypes.MANUAL_TASK, lastMousePosition)),
-               "account"),
-            new LabeledAction("Create Merge Node",
-               Lists.newArrayList(new CreateNodeOperation(WorkflowModelTypes.MERGE_NODE, lastMousePosition)),
-               "chevron-down"),
-            new LabeledAction("Create Decision Node",
-               Lists.newArrayList(
-                  new CreateNodeOperation(WorkflowModelTypes.DECISION_NODE, lastMousePosition)),
-               "chevron-up")));
+            new LabeledAction("Create Woman",
+               Lists.newArrayList(new CreateNodeOperation(WorkflowModelTypes.Woman, lastMousePosition)),
+               "account")// ,
+         // new LabeledAction("Create Merge Node",
+         // Lists.newArrayList(new CreateNodeOperation(WorkflowModelTypes.MERGE_NODE, lastMousePosition)),
+         // "chevron-down"),
+         // new LabeledAction("Create Decision Node",
+         // Lists.newArrayList(
+         // new CreateNodeOperation(WorkflowModelTypes.DECISION_NODE, lastMousePosition)),
+         // "chevron-up")
+         ));
 
       // Create edge actions between two nodes
-      if (selectedElements.size() == 1) {
-         GModelElement element = selectedElements.iterator().next();
-         if (element instanceof GNode) {
-            actions.addAll(createEdgeActions((GNode) element, index.getAllByClass(TaskNode.class)));
-         }
-      } else if (selectedElements.size() == 2) {
-         Iterator<GModelElement> iterator = selectedElements.iterator();
-         GModelElement firstElement = iterator.next();
-         GModelElement secondElement = iterator.next();
-         if (firstElement instanceof TaskNode && secondElement instanceof TaskNode) {
-            GNode firstNode = (GNode) firstElement;
-            GNode secondNode = (GNode) secondElement;
-            actions.add(createEdgeAction("Connect with Edge", firstNode, secondNode));
-            actions.add(createWeightedEdgeAction("Connect with Weighted Edge", firstNode, secondNode));
-         }
-      }
+      // if (selectedElements.size() == 1) {
+      // GModelElement element = selectedElements.iterator().next();
+      // if (element instanceof GNode) {
+      // actions.addAll(createEdgeActions((GNode) element, index.getAllByClass(TaskNode.class)));
+      // }
+      // } else if (selectedElements.size() == 2) {
+      // Iterator<GModelElement> iterator = selectedElements.iterator();
+      // GModelElement firstElement = iterator.next();
+      // GModelElement secondElement = iterator.next();
+      // if (firstElement instanceof TaskNode && secondElement instanceof TaskNode) {
+      // GNode firstNode = (GNode) firstElement;
+      // GNode secondNode = (GNode) secondElement;
+      // actions.add(createEdgeAction("Connect with Edge", firstNode, secondNode));
+      // actions.add(createWeightedEdgeAction("Connect with Weighted Edge", firstNode, secondNode));
+      // }
+      // }
 
       // Delete action
-      if (selectedElements.size() == 1) {
-         actions.add(new LabeledAction("Delete",
-            Lists.newArrayList(new DeleteOperation(editorContext.getSelectedElementIds())), "diff-removed"));
-      } else if (selectedElements.size() > 1) {
-         actions.add(new LabeledAction("Delete All",
-            Lists.newArrayList(new DeleteOperation(editorContext.getSelectedElementIds())), "diff-removed"));
-      }
+      // if (selectedElements.size() == 1) {
+      // actions.add(new LabeledAction("Delete",
+      // Lists.newArrayList(new DeleteOperation(editorContext.getSelectedElementIds())), "diff-removed"));
+      // } else if (selectedElements.size() > 1) {
+      // actions.add(new LabeledAction("Delete All",
+      // Lists.newArrayList(new DeleteOperation(editorContext.getSelectedElementIds())), "diff-removed"));
+      // }
 
       return actions;
    }
 
    private Set<LabeledAction> createEdgeActions(final GNode source, final Set<? extends GNode> targets) {
       Set<LabeledAction> actions = Sets.newLinkedHashSet();
-      // add first all edge, then all weighted edge actions to keep a nice order
-      targets.forEach(node -> actions.add(createEdgeAction("Create Edge to " + getLabel(node), source, node)));
-      targets.forEach(node -> actions
-         .add(createWeightedEdgeAction("Create Weighted Edge to " + getLabel(node), source, node)));
+      // // add first all edge, then all weighted edge actions to keep a nice order
+      // targets.forEach(node -> actions.add(createEdgeAction("Create Edge to " + getLabel(node), source, node)));
+      // targets.forEach(node -> actions
+      // .add(createWeightedEdgeAction("Create Weighted Edge to " + getLabel(node), source, node)));
       return actions;
    }
 
    private LabeledAction createWeightedEdgeAction(final String label, final GNode source, final GNode node) {
-      return new LabeledAction(label,
-         Lists.newArrayList(new CreateEdgeOperation(WorkflowModelTypes.WEIGHTED_EDGE, source.getId(), node.getId())),
-         "diff-added");
+      // return new LabeledAction(label,
+      // Lists.newArrayList(new CreateEdgeOperation(WorkflowModelTypes.WEIGHTED_EDGE, source.getId(), node.getId())),
+      // "diff-added");
+      return null;
    }
 
    private LabeledAction createEdgeAction(final String label, final GNode source, final GNode node) {
@@ -117,8 +117,8 @@ public class WorkflowCommandPaletteActionProvider implements CommandPaletteActio
    }
 
    private String getLabel(final GNode node) {
-      if (node instanceof TaskNode) {
-         return ((TaskNode) node).getName();
+      if (node instanceof Person) {
+         return ((Person) node).getName();
       }
       return node.getId();
    }

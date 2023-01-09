@@ -13,16 +13,16 @@ import { ReactWidget } from '@theia/core/lib/browser/widgets/react-widget';
 import { CommandRegistry } from '@theia/core/lib/common';
 import { ApplicationInfo, ApplicationServer } from '@theia/core/lib/common/application-protocol';
 import URI from '@theia/core/lib/common/uri';
+import * as React from '@theia/core/shared/react';
 import { DebugConfigurationManager } from '@theia/debug/lib/browser/debug-configuration-manager';
 import { DebugCommands } from '@theia/debug/lib/browser/debug-frontend-application-contribution';
 import { GitDiffCommands } from '@theia/git/lib/browser/diff/git-diff-contribution';
 import { EXPLORER_VIEW_CONTAINER_ID, FileNavigatorWidget, FILE_NAVIGATOR_ID } from '@theia/navigator/lib/browser';
 import { WorkspaceService } from '@theia/workspace/lib/browser';
-import { CODEGEN_COMMAND as CODEGEN_CPP_COMMAND } from 'coffee-cpp-extension/lib/browser/command-contribution';
-import { CODEGEN_COMMAND as CODEGEN_JAVA_COMMAND } from 'coffee-java-extension/lib/browser/command-contribution';
-import { ANALYZE_COMMAND } from 'coffee-workflow-analyzer/lib/browser/command-contribution';
+// import { CODEGEN_COMMAND as CODEGEN_CPP_COMMAND } from 'coffee-cpp-extension/lib/browser/command-contribution';
+// import { CODEGEN_COMMAND as CODEGEN_JAVA_COMMAND } from 'coffee-java-extension/lib/browser/command-contribution';
+// import { ANALYZE_COMMAND } from 'coffee-workflow-analyzer/lib/browser/command-contribution';
 import { inject, injectable, postConstruct } from 'inversify';
-import * as React from '@theia/core/shared/react';
 
 /* eslint-disable no-invalid-this */
 
@@ -465,7 +465,7 @@ export class WelcomePageWidget extends ReactWidget {
     protected openFileExplorer = (): Promise<Widget | undefined> => this.shell.revealWidget(EXPLORER_VIEW_CONTAINER_ID);
     protected runModelAnalysis = (): void => {
         open(this.openerService, this.getSuperBrewer3000FileURI('wfconfig')).then(() => {
-            this.commandRegistry.executeCommand(ANALYZE_COMMAND.id);
+            // this.commandRegistry.executeCommand(ANALYZE_COMMAND.id);
         });
     };
     protected compareDiagramToHead = (): void => {
@@ -480,7 +480,7 @@ export class WelcomePageWidget extends ReactWidget {
                 if (SelectableTreeNode.is(node)) {
                     model.selectNode(node);
                 }
-                setTimeout(() => this.commandRegistry.executeCommand(CODEGEN_JAVA_COMMAND.id, uri), 1000);
+                // setTimeout(() => this.commandRegistry.executeCommand(CODEGEN_JAVA_COMMAND.id, uri), 1000);
             });
         });
     };
@@ -493,7 +493,7 @@ export class WelcomePageWidget extends ReactWidget {
                 if (SelectableTreeNode.is(node)) {
                     model.selectNode(node);
                 }
-                setTimeout(() => this.commandRegistry.executeCommand(CODEGEN_CPP_COMMAND.id, uri), 1000);
+                // setTimeout(() => this.commandRegistry.executeCommand(CODEGEN_CPP_COMMAND.id, uri), 1000);
             });
         });
     };

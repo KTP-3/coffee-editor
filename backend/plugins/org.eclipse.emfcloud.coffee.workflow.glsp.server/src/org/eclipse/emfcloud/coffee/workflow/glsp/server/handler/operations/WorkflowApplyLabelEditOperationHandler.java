@@ -12,7 +12,7 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.operations;
 
 import static org.eclipse.glsp.server.types.GLSPServerException.getOrThrow;
 
-import org.eclipse.emfcloud.coffee.Task;
+import org.eclipse.emfcloud.coffee.Man;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelTypes;
 import org.eclipse.emfcloud.modelserver.glsp.notation.integration.EMSNotationModelState;
@@ -39,11 +39,11 @@ public class WorkflowApplyLabelEditOperationHandler extends AbstractEMSOperation
          modelState.getIndex().findElementByClass(graphicalElementId, GLabel.class), GLabel.class,
          "Element with provided ID cannot be found or is not a GLabel");
 
-      if (label.getType() == WorkflowModelTypes.LABEL_HEADING) {
+      if (label.getType() == WorkflowModelTypes.Man) {
          String elementId = graphicalElementId.replace("_classname", "");
-         Task semanticElement = getOrThrow(modelState.getIndex().getEObject(elementId), Task.class,
+         Man semanticElement = getOrThrow(modelState.getIndex().getEObject(elementId), Man.class,
             "Could not find Task for id '" + elementId + "', no delete operation executed.");
-         modelServerAccess.setTaskName(semanticElement, inputText)
+         modelServerAccess.setName(semanticElement, inputText)
             .thenAccept(response -> {
                if (response.body() == null || response.body().isEmpty()) {
                   throw new GLSPServerException("Could not rename Task to: " + inputText);

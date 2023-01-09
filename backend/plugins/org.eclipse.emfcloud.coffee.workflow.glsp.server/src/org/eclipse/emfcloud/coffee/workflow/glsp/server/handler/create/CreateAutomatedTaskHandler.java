@@ -14,22 +14,32 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelTypes;
 import org.eclipse.emfcloud.modelserver.client.Response;
 import org.eclipse.glsp.graph.GPoint;
 
 public class CreateAutomatedTaskHandler extends AbstractCreateNodeHandler {
 
-   public CreateAutomatedTaskHandler() {
-      super(WorkflowModelTypes.AUTOMATED_TASK);
+   public CreateAutomatedTaskHandler(final String type) {
+      super(type);
+      // TODO Auto-generated constructor stub
    }
 
    @Override
-   public String getLabel() { return "Automated Task"; }
-
-   @Override
-   protected Function<Optional<GPoint>, CompletableFuture<Response<String>>> getNodeCreator() {
-      return modelAccess::addAutomatedTask;
+   protected Function<Optional<GPoint>, CompletableFuture<Response<String>>> getNodeCreator() { // TODO Auto-generated
+                                                                                                // method stub
+      return null;
    }
+
+   // public CreateAutomatedTaskHandler() {
+   // super(WorkflowModelTypes.AUTOMATED_TASK);
+   // }
+   //
+   // @Override
+   // public String getLabel() { return "Automated Task"; }
+   //
+   // @Override
+   // protected Function<Optional<GPoint>, CompletableFuture<Response<String>>> getNodeCreator() {
+   // return modelAccess::addAutomatedTask;
+   // }
 
 }

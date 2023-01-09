@@ -11,13 +11,20 @@
 package org.eclipse.emfcloud.coffee.modelserver.commands.semantic;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfcloud.coffee.CoffeePackage;
 
 public class AddFlowCommand extends AbstractAddFlowCommand {
 
-   public AddFlowCommand(final EditingDomain domain, final URI modelUri, final String sourceElementId,
+   public AddFlowCommand(final EditingDomain domain, final URI modelUri, final EClass eClass,
+      final String sourceElementId,
       final String targetElementId) {
-      super(domain, modelUri, CoffeePackage.Literals.FLOW, sourceElementId, targetElementId);
+      super(domain, modelUri, eClass, sourceElementId, targetElementId);
+      // TODO Auto-generated constructor stub
    }
+
+   // public AddFlowCommand(final EditingDomain domain, final URI modelUri, final String sourceElementId,
+   // final String targetElementId) {
+   // super(domain, modelUri, CoffeePackage.Literals.FLOW, sourceElementId, targetElementId);
+   // }
 }

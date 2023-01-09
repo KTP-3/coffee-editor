@@ -12,13 +12,10 @@ import {
     boundsFeature,
     connectableFeature,
     deletableFeature,
-    DiamondNode,
     EditableLabel,
     fadeFeature,
     hoverFeedbackFeature,
     isEditableLabel,
-    layoutableChildFeature,
-    LayoutContainer,
     layoutContainerFeature,
     moveFeature,
     Nameable,
@@ -26,15 +23,13 @@ import {
     popupFeature,
     RectangularNode,
     SChildElement,
-    SEdge,
     selectFeature,
     SModelElement,
-    SShapeElement,
     WithEditableLabel,
     withEditLabelFeature
 } from '@eclipse-glsp/client';
 
-export class TaskNode extends RectangularNode implements Nameable, WithEditableLabel {
+export class ManNode extends RectangularNode implements Nameable, WithEditableLabel {
     static override readonly DEFAULT_FEATURES = [
         connectableFeature,
         deletableFeature,
@@ -48,9 +43,6 @@ export class TaskNode extends RectangularNode implements Nameable, WithEditableL
         nameFeature,
         withEditLabelFeature
     ];
-    duration?: number;
-    taskType?: string;
-    reference?: string;
 
     get editableLabel(): (SChildElement & EditableLabel) | undefined {
         const label = this.children.find(element => element.type === 'label:heading');
@@ -66,48 +58,13 @@ export class TaskNode extends RectangularNode implements Nameable, WithEditableL
     }
 }
 
-export function isTaskNode(element: SModelElement): element is TaskNode {
-    return element instanceof TaskNode || false;
+export function isManNode(element: SModelElement): element is ManNode {
+    return element instanceof ManNode || false;
 }
 
-export class WeightedEdge extends SEdge {
-    probability?: string;
-}
-
-export class ActivityNode extends DiamondNode {
-    nodeType: string = ActivityNode.Type.UNDEFINED;
-    override size = {
-        width: 32,
-        height: 32
-    };
-    override strokeWidth = 1;
-}
-
-export namespace ActivityNode {
-    export namespace Type {
-        export const INITIAL = 'initalNode';
-        export const FINAL = 'finalNode';
-        export const DECISION = 'decisionNode';
-        export const MERGE = 'mergeNode';
-        export const JOIN = 'joinNode';
-        export const FORK = 'forkNode';
-        export const UNDEFINED = 'undefined';
-    }
-}
-
-export class Icon extends SShapeElement implements LayoutContainer {
-    static readonly DEFAULT_FEATURES = [boundsFeature, layoutContainerFeature, layoutableChildFeature, fadeFeature];
-
-    layout: string;
-    override layoutOptions?: { [key: string]: string | number | boolean };
-    override size = {
-        width: 32,
-        height: 32
-    };
-}
-
-export class CategoryNode extends RectangularNode implements Nameable, WithEditableLabel {
+export class WomanNode extends RectangularNode implements Nameable, WithEditableLabel {
     static override readonly DEFAULT_FEATURES = [
+        connectableFeature,
         deletableFeature,
         selectFeature,
         boundsFeature,
@@ -120,8 +77,6 @@ export class CategoryNode extends RectangularNode implements Nameable, WithEdita
         withEditLabelFeature
     ];
 
-    name = '';
-
     get editableLabel(): (SChildElement & EditableLabel) | undefined {
         const label = this.children.find(element => element.type === 'label:heading');
         if (label && isEditableLabel(label)) {
@@ -129,4 +84,74 @@ export class CategoryNode extends RectangularNode implements Nameable, WithEdita
         }
         return undefined;
     }
+
+    get name(): string {
+        const labelText = this.editableLabel?.text;
+        return labelText ? labelText : '<unknown>';
+    }
 }
+
+export function isWomanNode(element: SModelElement): element is WomanNode {
+    return element instanceof WomanNode || false;
+}
+
+// export class WeightedEdge extends SEdge {
+//     probability?: string;
+// }
+
+// export class ActivityNode extends DiamondNode {
+//     nodeType: string = ActivityNode.Type.UNDEFINED;
+//     override size = {
+//         width: 32,
+//         height: 32
+//     };
+//     override strokeWidth = 1;
+// }
+
+// export namespace ActivityNode {
+//     export namespace Type {
+//         export const INITIAL = 'initalNode';
+//         export const FINAL = 'finalNode';
+//         export const DECISION = 'decisionNode';
+//         export const MERGE = 'mergeNode';
+//         export const JOIN = 'joinNode';
+//         export const FORK = 'forkNode';
+//         export const UNDEFINED = 'undefined';
+//     }
+// }
+
+// export class Icon extends SShapeElement implements LayoutContainer {
+//     static readonly DEFAULT_FEATURES = [boundsFeature, layoutContainerFeature, layoutableChildFeature, fadeFeature];
+
+//     layout: string;
+//     override layoutOptions?: { [key: string]: string | number | boolean };
+//     override size = {
+//         width: 32,
+//         height: 32
+//     };
+// }
+
+// export class CategoryNode extends RectangularNode implements Nameable, WithEditableLabel {
+//     static override readonly DEFAULT_FEATURES = [
+//         deletableFeature,
+//         selectFeature,
+//         boundsFeature,
+//         moveFeature,
+//         layoutContainerFeature,
+//         fadeFeature,
+//         hoverFeedbackFeature,
+//         popupFeature,
+//         nameFeature,
+//         withEditLabelFeature
+//     ];
+
+//     name = '';
+
+//     get editableLabel(): (SChildElement & EditableLabel) | undefined {
+//         const label = this.children.find(element => element.type === 'label:heading');
+//         if (label && isEditableLabel(label)) {
+//             return label;
+//         }
+//         return undefined;
+//     }
+// }

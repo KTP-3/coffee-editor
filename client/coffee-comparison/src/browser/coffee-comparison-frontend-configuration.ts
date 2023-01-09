@@ -15,7 +15,7 @@ import * as path from 'path';
 
 @injectable()
 export class CoffeeComparisonFrontendConfiguration extends ComparisonExtensionConfiguration {
-    fileExtensions = ['.coffee'];
+    fileExtensions = ['.basicfamily'];
 
     override getDiffViewIcon(): string {
         return codicon('diff');
@@ -41,7 +41,7 @@ export class CoffeeComparisonFrontendConfiguration extends ComparisonExtensionCo
     }
 
     getModelPackageName(): string {
-        return 'org.eclipse.emfcloud.coffee.CoffeePackage';
+        return 'org.eclipse.emfcloud.coffee.BasicfamilyPackage';
     }
 
     override supportGraphicalComparison(): boolean {

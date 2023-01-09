@@ -10,33 +10,29 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.modelserver.commands.semantic;
 
-import java.util.UUID;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfcloud.coffee.CoffeeFactory;
-import org.eclipse.emfcloud.coffee.Node;
 
 public abstract class AbstractAddNodeCommand extends SemanticElementCommand {
 
-   protected final Node node;
+   // protected final Node node;
 
    public AbstractAddNodeCommand(final EditingDomain domain, final URI modelUri, final EClass eClass) {
       super(domain, modelUri);
-      node = (Node) CoffeeFactory.eINSTANCE.create(eClass);
-      node.setId(UUID.randomUUID().toString());
+      // node = (Node) CoffeeFactory.eINSTANCE.create(eClass);
+      // node.setId(UUID.randomUUID().toString());
    }
 
    @Override
    protected void doExecute() {
-      initializeNode(node);
-      semanticModel.getNodes().add(node);
+      // initializeNode(node);
+      // semanticModel.getNodes().add(node);
    }
 
-   protected void initializeNode(final Node node) {
-      // Empty by default
-   }
+   // protected void initializeNode(final Node node) {
+   // // Empty by default
+   // }
 
-   public Node getNode() { return node; }
+   // public Node getNode() { return node; }
 }

@@ -33,7 +33,7 @@ import {
 } from '@eclipse-glsp/client';
 import { inject, injectable } from 'inversify';
 import { DOMHelper } from 'sprotty/lib/base/views/dom-helper';
-import { isTaskNode, TaskNode } from '../model';
+import { isManNode, ManNode } from '../model';
 
 /**
  * Is send from the {@link TaskEditor} to the GLSP server
@@ -94,7 +94,7 @@ export class TaskEditor extends AbstractUIExtension {
     @inject(TYPES.ILogger)
     protected override logger: ILogger;
 
-    protected task: TaskNode;
+    protected task: ManNode;
     protected autoSuggestion: AutoCompleteWidget;
 
     id(): string {
@@ -183,6 +183,6 @@ export class TaskEditor extends AbstractUIExtension {
     }
 }
 
-function getTask(ids: string[], index: ModelIndexImpl): TaskNode[] {
-    return ids.map(id => index.getById(id)).filter(element => element && isTaskNode(element)) as TaskNode[];
+function getTask(ids: string[], index: ModelIndexImpl): ManNode[] {
+    return ids.map(id => index.getById(id)).filter(element => element && isManNode(element)) as ManNode[];
 }

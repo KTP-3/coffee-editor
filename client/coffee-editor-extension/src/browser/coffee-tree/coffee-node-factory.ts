@@ -10,16 +10,16 @@
  */
 import { TreeEditor } from '@eclipse-emfcloud/theia-tree-editor';
 import { ILogger } from '@theia/core';
+import { TreeLabelProvider } from '@theia/core/lib/browser/tree/tree-label-provider';
 import { inject, injectable } from 'inversify';
-import { CoffeeModel, Component, Flow, Identifiable, Machine, WeightedFlow, Workflow } from './coffee-model';
-
+import { ExampleModel, Family } from './coffee-model';
 import { CoffeeTreeEditorConstants } from './coffee-tree-editor-widget';
-import { CoffeeTreeLabelProvider } from './coffee-tree-label-provider-contribution';
 
 @injectable()
 export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
     constructor(
-        @inject(CoffeeTreeLabelProvider) private readonly labelProvider: CoffeeTreeLabelProvider,
+        @inject(TreeLabelProvider)
+        private readonly labelProvider: TreeLabelProvider,
         @inject(ILogger) private readonly logger: ILogger
     ) {}
 
@@ -31,70 +31,42 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
         return [];
     }
 
-    mapData(
-        element: Identifiable,
-        parent?: TreeEditor.Node,
-        property?: string,
-        indexOrKey?: number | string,
-        defaultType?: string
-    ): TreeEditor.Node {
-        if (!element) {
-            // sanity check
+    mapData(data: any, parent?: TreeEditor.Node, property?: string, indexOrKey?: number | string): TreeEditor.Node {
+        if (!data) {
             this.logger.warn('mapData called without data');
-            return {
-                ...this.emptyNode(),
-                editorId: CoffeeTreeEditorConstants.EDITOR_ID
-            };
         }
+
         const node: TreeEditor.Node = {
-            ...this.emptyNode(),
+            ...this.defaultNode(),
             editorId: CoffeeTreeEditorConstants.EDITOR_ID,
-            name: this.labelProvider.getName(element) ?? '',
+            name: this.labelProvider.getName(data)!,
             parent: parent,
-            id: element.id,
             jsonforms: {
-                type: element.$type || defaultType || '',
-                data: element,
-                property: property ?? '',
+                type: this.getTypeId(data),
+                data: data,
+                property: property!,
                 index: typeof indexOrKey === 'number' ? indexOrKey.toFixed(0) : indexOrKey
             }
         };
+
         // containments
         if (parent) {
             parent.children.push(node);
             parent.expanded = true;
         }
-        if (Component.is(element) && element.children) {
-            element.children.forEach((component: any, idx: number) => {
-                this.mapData(component, node, 'children', idx);
+        if (Family.is(data)) {
+            const children = data.members as Array<any>;
+            // component types
+            children.forEach((element, idx) => {
+                this.mapData(element, node, 'members', idx);
             });
         }
-        if (Machine.is(element)) {
-            element.workflows.forEach((workflow: any, idx: number) => {
-                workflow.$type = Workflow.$type;
-                this.mapData(workflow, node, 'workflows', idx);
-            });
-        }
-        if (Workflow.is(element)) {
-            if (element.nodes) {
-                element.nodes.forEach((workflowNode: any, idx: number) => {
-                    this.mapData(workflowNode, node, 'nodes', idx);
-                });
-            }
-            if (element.flows) {
-                element.flows.forEach((flow: any, idx: number) => {
-                    if (!WeightedFlow.is(flow)) {
-                        flow.$type = Flow.$type;
-                    }
-                    this.mapData(flow, node, 'flows', idx);
-                });
-            }
-        }
+
         return node;
     }
 
     hasCreatableChildren(node: TreeEditor.Node): boolean {
-        return node ? CoffeeModel.childrenMapping.get(node.jsonforms.type) !== undefined : false;
+        return node ? ExampleModel.childrenMapping.get(node.jsonforms.type) !== undefined : false;
     }
 
     protected emptyNode(): Pick<
@@ -125,4 +97,29 @@ export class CoffeeTreeNodeFactory implements TreeEditor.NodeFactory {
             jsonforms: { type: '', property: '', data: '' }
         };
     }
+
+    protected defaultNode(): Omit<TreeEditor.Node, 'editorId'> {
+        return {
+            id: v4(),
+            expanded: false,
+            selected: false,
+            parent: undefined,
+            children: [],
+            decorationData: {},
+            name: '',
+            jsonforms: {
+                type: '',
+                property: '',
+                data: undefined
+            }
+        };
+    }
+
+    /** Derives the type id from the given data. */
+    protected getTypeId(data: any): string {
+        return (data && data.typeId) || '';
+    }
+}
+function v4(): string {
+    throw new Error('Function not implemented.');
 }

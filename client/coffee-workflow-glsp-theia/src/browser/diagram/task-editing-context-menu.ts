@@ -13,8 +13,9 @@ import { GLSPCommandHandler, GLSPContextMenu } from '@eclipse-glsp/theia-integra
 import { CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry } from '@theia/core';
 import { ApplicationShell } from '@theia/core/lib/browser';
 import { inject, injectable } from '@theia/core/shared/inversify';
+import { isManNode } from 'coffee-workflow-glsp';
 import { TaskEditor } from 'coffee-workflow-glsp/lib/direct-task-editing/direct-task-editor';
-import { isTaskNode } from 'coffee-workflow-glsp/lib/model';
+// import { isTaskNode } from 'coffee-workflow-glsp/lib/model';
 
 export namespace WorkflowTaskEditingCommands {
     export const EDIT_TASK = 'glsp-workflow-edit-task';
@@ -34,7 +35,7 @@ export class WorkflowTaskEditCommandContribution implements CommandContribution 
                         contextElementsId: [context.selectedElements[0].id]
                     })
                 ],
-                isEnabled: context => !context.isReadonly && context.selectedElements.filter(isTaskNode).length === 1
+                isEnabled: context => !context.isReadonly && context.selectedElements.filter(isManNode).length === 1
             })
         );
     }

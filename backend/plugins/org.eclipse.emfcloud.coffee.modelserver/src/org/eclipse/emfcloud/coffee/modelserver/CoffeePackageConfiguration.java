@@ -12,7 +12,7 @@ package org.eclipse.emfcloud.coffee.modelserver;
 
 import java.util.Collection;
 
-import org.eclipse.emfcloud.coffee.CoffeePackage;
+import org.eclipse.emfcloud.coffee.BasicfamilyPackage;
 import org.eclipse.emfcloud.modelserver.common.ModelServerPathParametersV2;
 import org.eclipse.emfcloud.modelserver.emf.configuration.EPackageConfiguration;
 
@@ -21,7 +21,7 @@ import com.google.common.collect.Lists;
 public class CoffeePackageConfiguration implements EPackageConfiguration {
 
    @Override
-   public String getId() { return CoffeePackage.eINSTANCE.getNsURI(); }
+   public String getId() { return BasicfamilyPackage.eINSTANCE.getNsURI(); }
 
    @Override
    public Collection<String> getFileExtensions() {
@@ -30,7 +30,7 @@ public class CoffeePackageConfiguration implements EPackageConfiguration {
 
    @Override
    public void registerEPackage() {
-      CoffeePackage.eINSTANCE.eClass();
+      BasicfamilyPackage.eINSTANCE.eClass();
    }
 
 }

@@ -21,8 +21,7 @@ import {
 import { injectable } from 'inversify';
 import { VNode } from 'snabbdom';
 import { findParentByFeature, ShapeView, svg } from 'sprotty';
-
-import { Icon, isTaskNode } from './model';
+import { isManNode } from './model';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const JSX = { createElement: svg };
@@ -50,14 +49,14 @@ export class WorkflowEdgeView extends PolylineEdgeViewWithGapsOnIntersections {
 
 @injectable()
 export class IconView extends ShapeView {
-    render(element: Icon, context: RenderingContext): VNode | undefined {
-        const taskNode = findParentByFeature(element, isTaskNode);
+    render(element: any, context: RenderingContext): VNode | undefined {
+        const taskNode = findParentByFeature(element, isManNode);
         if (!taskNode || !this.isVisible(element, context)) {
             return undefined;
         }
 
         let icon;
-        if (taskNode.type === 'task:manual') {
+        if (taskNode.type === 'basicfamily:Man') {
             // From codicons: https://github.com/microsoft/vscode-codicons/blob/main/src/icons/account.svg?short_path=8135b2d
             icon =
                 // eslint-disable-next-line max-len

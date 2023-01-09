@@ -13,8 +13,8 @@ package org.eclipse.emfcloud.coffee.modelserver;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddAutomatedTaskCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddDecisionNodeCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddFlowCommandContribution;
-import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddManualTaskCommandContribution;
-import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddMergeNodeCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddManCommandContribution;
+import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddWomanCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.AddWeightedFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveFlowCommandContribution;
 import org.eclipse.emfcloud.coffee.modelserver.commands.contributions.RemoveNodeCommandContribution;
@@ -52,10 +52,10 @@ public class CoffeeModelServerModule extends EMSNotationModelServerModule {
       super.configureCommandCodecs(binding);
 
       // Nodes
-      binding.put(AddManualTaskCommandContribution.TYPE, AddManualTaskCommandContribution.class);
+      binding.put(AddManCommandContribution.TYPE, AddManCommandContribution.class);
       binding.put(AddAutomatedTaskCommandContribution.TYPE, AddAutomatedTaskCommandContribution.class);
       binding.put(AddDecisionNodeCommandContribution.TYPE, AddDecisionNodeCommandContribution.class);
-      binding.put(AddMergeNodeCommandContribution.TYPE, AddMergeNodeCommandContribution.class);
+      binding.put(AddWomanCommandContribution.TYPE, AddWomanCommandContribution.class);
       binding.put(RemoveNodeCommandContribution.TYPE, RemoveNodeCommandContribution.class);
 
       // Flows (Edges)

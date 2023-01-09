@@ -13,13 +13,11 @@ import { GLSPServerContribution } from '@eclipse-glsp/theia-integration/lib/node
 import { ConnectionHandler, JsonRpcConnectionHandler } from '@theia/core/lib/common/messaging';
 import { BackendApplicationContribution } from '@theia/core/lib/node';
 import { ContainerModule } from '@theia/core/shared/inversify';
-import { CppCodeGenServer, CPP_CODEGEN_SERVICE_PATH } from 'coffee-cpp-extension/lib/common/generate-protocol';
-import { JavaCodeGenServer, JAVA_CODEGEN_SERVICE_PATH } from 'coffee-java-extension/lib/common/generate-protocol';
+// import { CppCodeGenServer, CPP_CODEGEN_SERVICE_PATH } from 'coffee-cpp-extension/lib/common/generate-protocol';
+// import { JavaCodeGenServer, JAVA_CODEGEN_SERVICE_PATH } from 'coffee-java-extension/lib/common/generate-protocol';
 import { WorkflowAnalysisClient, workflowServicePath } from 'coffee-workflow-analyzer/lib/common/workflow-analyze-protocol';
-
-import { CoffeeCppCodeGenServer } from './cpp-codegen-server';
 import { WorkflowGLSPServerContribution } from './glsp-server-contribution';
-import { CoffeeJavaCodeGenServer } from './java-codegen-server';
+// import { CoffeeJavaCodeGenServer } from './java-codegen-server';
 import { WorkflowModelServerLaunchOptions } from './model-server-launch-options';
 import { WorkflowAnalysisServer } from './workflow-analysis-server';
 import { WorkflowLSPServer } from './workflow-dsl-lsp-server';
@@ -55,21 +53,21 @@ export default new ContainerModule((bind, _unbind, isBound, rebind) => {
         .inSingletonScope();
 
     // Java Codegen Server
-    bind(CoffeeJavaCodeGenServer).toSelf().inSingletonScope();
-    bind(BackendApplicationContribution).toService(CoffeeJavaCodeGenServer);
-    bind(ConnectionHandler)
-        .toDynamicValue(
-            ctx =>
-                new JsonRpcConnectionHandler(JAVA_CODEGEN_SERVICE_PATH, () => ctx.container.get<JavaCodeGenServer>(CoffeeJavaCodeGenServer))
-        )
-        .inSingletonScope();
+    // bind(CoffeeJavaCodeGenServer).toSelf().inSingletonScope();
+    // bind(BackendApplicationContribution).toService(CoffeeJavaCodeGenServer);
+    // bind(ConnectionHandler)
+    //     .toDynamicValue(
+    //         ctx =>
+    //             new JsonRpcConnectionHandler(JAVA_CODEGEN_SERVICE_PATH, () => ctx.container.get<JavaCodeGenServer>(CoffeeJavaCodeGenServer))
+    //     )
+    //     .inSingletonScope();
 
     // CPP Codegen Server
-    bind(CoffeeCppCodeGenServer).toSelf().inSingletonScope();
-    bind(BackendApplicationContribution).toService(CoffeeCppCodeGenServer);
-    bind(ConnectionHandler)
-        .toDynamicValue(
-            ctx => new JsonRpcConnectionHandler(CPP_CODEGEN_SERVICE_PATH, () => ctx.container.get<CppCodeGenServer>(CoffeeCppCodeGenServer))
-        )
-        .inSingletonScope();
+    // bind(CoffeeCppCodeGenServer).toSelf().inSingletonScope();
+    // bind(BackendApplicationContribution).toService(CoffeeCppCodeGenServer);
+    // bind(ConnectionHandler)
+    //     .toDynamicValue(
+    //         ctx => new JsonRpcConnectionHandler(CPP_CODEGEN_SERVICE_PATH, () => ctx.container.get<CppCodeGenServer>(CoffeeCppCodeGenServer))
+    //     )
+    //     .inSingletonScope();
 });

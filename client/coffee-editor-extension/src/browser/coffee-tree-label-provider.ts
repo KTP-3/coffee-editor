@@ -24,7 +24,7 @@ export class CoffeeLabelProviderContribution implements LabelProviderContributio
             toCheck = UriSelection.getUri(uri);
         }
         if (toCheck instanceof URI) {
-            if (toCheck.path.ext === '.coffee') {
+            if (toCheck.path.ext === '.basicfamily') {
                 return 1000;
             }
         }

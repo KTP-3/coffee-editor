@@ -14,21 +14,33 @@ import java.util.concurrent.CompletableFuture;
 
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.modelserver.client.Response;
-import org.eclipse.glsp.graph.DefaultTypes;
 
 public class CreateFlowHandler extends AbstractCreateEdgeHandler {
 
-   public CreateFlowHandler() {
-      super(DefaultTypes.EDGE);
+   public CreateFlowHandler(final String type) {
+      super(type);
+      // TODO Auto-generated constructor stub
    }
-
-   @Override
-   public String getLabel() { return "Flow"; }
 
    @Override
    protected CompletableFuture<Response<String>> addFlow(final WorkflowModelServerAccess modelAccess,
-      final String sourceId, final String targetId) {
-      return modelAccess.addFlow(sourceId, targetId);
+      final String sourceId,
+      final String targetId) {
+      // TODO Auto-generated method stub
+      return null;
    }
+
+   // public CreateFlowHandler() {
+   // super(DefaultTypes.EDGE);
+   // }
+   //
+   // @Override
+   // public String getLabel() { return "Flow"; }
+   //
+   // @Override
+   // protected CompletableFuture<Response<String>> addFlow(final WorkflowModelServerAccess modelAccess,
+   // final String sourceId, final String targetId) {
+   // return modelAccess.addFlow(sourceId, targetId);
+   // }
 
 }

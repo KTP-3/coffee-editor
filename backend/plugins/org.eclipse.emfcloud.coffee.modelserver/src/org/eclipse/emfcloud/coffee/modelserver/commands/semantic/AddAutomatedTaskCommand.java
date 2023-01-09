@@ -11,13 +11,18 @@
 package org.eclipse.emfcloud.coffee.modelserver.commands.semantic;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfcloud.coffee.CoffeePackage;
 
 public class AddAutomatedTaskCommand extends AbstractAddTaskCommand {
 
-   public AddAutomatedTaskCommand(final EditingDomain domain, final URI modelUri) {
-      super(domain, modelUri, CoffeePackage.Literals.AUTOMATIC_TASK);
+   public AddAutomatedTaskCommand(final EditingDomain domain, final URI modelUri, final EClass eClass) {
+      super(domain, modelUri, eClass);
+      // TODO Auto-generated constructor stub
    }
+
+   // public AddAutomatedTaskCommand(final EditingDomain domain, final URI modelUri) {
+   // super(domain, modelUri, CoffeePackage.Literals.AUTOMATIC_TASK);
+   // }
 
 }

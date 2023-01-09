@@ -13,10 +13,6 @@ package org.eclipse.emfcloud.coffee.modelserver.commands.semantic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.Task;
-
-import com.google.common.base.Preconditions;
 
 public abstract class AbstractAddTaskCommand extends AbstractAddNodeCommand {
 
@@ -24,10 +20,10 @@ public abstract class AbstractAddTaskCommand extends AbstractAddNodeCommand {
       super(domain, modelUri, eClass);
    }
 
-   @Override
-   protected void initializeNode(final Node node) {
-      super.initializeNode(node);
-      Preconditions.checkArgument(node instanceof Task);
-      Task.class.cast(node).setName("New Task");
-   }
+   // @Override
+   // protected void initializeNode(final Node node) {
+   // super.initializeNode(node);
+   //// Preconditions.checkArgument(node instanceof Task);
+   //// Task.class.cast(node).setName("New Task");
+   // }
 }

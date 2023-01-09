@@ -32,7 +32,7 @@ export class CoffeeComparisonBackendConfiguration extends ComparisonExtensionCon
     }
 
     getModelPackageName(): string {
-        return 'org.eclipse.emfcloud.coffee.CoffeePackage';
+        return 'org.eclipse.emfcloud.coffee.BasicfamilyPackage';
     }
 
     override supportGraphicalComparison(): boolean {

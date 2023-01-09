@@ -12,12 +12,12 @@ package org.eclipse.emfcloud.coffee.modelserver;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.emfcloud.coffee.util.CoffeeResourceFactoryImpl;
+import org.eclipse.emfcloud.coffee.util.BasicfamilyResourceFactoryImpl;
 
 public interface CoffeeResource extends XMIResource {
 
-   Resource.Factory FACTORY = new CoffeeResourceFactoryImpl();
+   Resource.Factory FACTORY = new BasicfamilyResourceFactoryImpl();
 
-   String FILE_EXTENSION = "coffee";
+   String FILE_EXTENSION = "basicfamily";
 
 }

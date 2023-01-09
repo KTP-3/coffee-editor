@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<basicfamily:Family xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:basicfamily="http://www.eclipse.org/sirius/sample/basicfamily" id="LfaoGlnEe21UrvwuVSS-Q" name="Ali">
+  <members xsi:type="basicfamily:Man" id="6580dc94-9643-476f-8541-339af9c9e5fc" name="Alex"/>
+  <members xsi:type="basicfamily:Man" id="003d83f9-974a-4eae-ab2b-c0aecb152496" name="Bob"/>
+  <members xsi:type="basicfamily:Man" id="51d53c07-ba0d-429c-8fab-e3bbbd577949" name="Chen"/>
+  <members xsi:type="basicfamily:Man" id="01608a0f-2bb5-46c7-a133-189af3472ef6" name="David"/>
+  <members xsi:type="basicfamily:Man" id="1627ee27-c6ff-4d12-bf0f-6bc8abd9e21c" name="Elon"/>
+  <members xsi:type="basicfamily:Man" id="dd043270-2c53-4018-a521-491d4cf03996" name="Fredrick"/>
+  <members xsi:type="basicfamily:Man" id="80b8af6e-ded6-487c-82f3-bf90c71a5920" name="Glen"/>
+  <members xsi:type="basicfamily:Man" id="87626453-a9e9-4fe2-9fef-ca97e941212b" name="Hyde"/>
+  <members xsi:type="basicfamily:Man" id="4ece6ce8-2352-477c-acdf-87285903bc04" name="Igor"/>
+  <members xsi:type="basicfamily:Man" id="aa244aa7-e614-41e7-8d79-4f1e94cdc08d" name="John"/>
+  <members xsi:type="basicfamily:Man" id="4b6031ef-7fb5-41d3-8e16-eb94b9b714b3" name="Kevin"/>
+</basicfamily:Family>

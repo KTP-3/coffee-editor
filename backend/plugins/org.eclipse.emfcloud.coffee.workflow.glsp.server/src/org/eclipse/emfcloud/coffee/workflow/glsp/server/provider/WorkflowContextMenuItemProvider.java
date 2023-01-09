@@ -10,10 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.provider;
 
-import static org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelTypes.AUTOMATED_TASK;
-import static org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelTypes.MANUAL_TASK;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -21,9 +17,7 @@ import org.eclipse.glsp.graph.GPoint;
 import org.eclipse.glsp.server.features.contextmenu.ContextMenuItemProvider;
 import org.eclipse.glsp.server.features.contextmenu.MenuItem;
 import org.eclipse.glsp.server.model.GModelState;
-import org.eclipse.glsp.server.operations.CreateNodeOperation;
 
-import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 public class WorkflowContextMenuItemProvider implements ContextMenuItemProvider {
@@ -34,11 +28,12 @@ public class WorkflowContextMenuItemProvider implements ContextMenuItemProvider 
    @Override
    public List<MenuItem> getItems(final List<String> selectedElementIds, final GPoint position,
       final Map<String, String> args) {
-      MenuItem newAutTask = new MenuItem("newAutoTask", "Automated Task",
-         Arrays.asList(new CreateNodeOperation(AUTOMATED_TASK, position)), true);
-      MenuItem newManTask = new MenuItem("newManualTask", "Manual Task",
-         Arrays.asList(new CreateNodeOperation(MANUAL_TASK, position)), true);
-      MenuItem newChildMenu = new MenuItem("new", "New", Arrays.asList(newAutTask, newManTask), "add", "0_new");
-      return Lists.newArrayList(newChildMenu);
+      // MenuItem newAutTask = new MenuItem("newAutoTask", "Automated Task",
+      // Arrays.asList(new CreateNodeOperation(AUTOMATED_TASK, position)), true);
+      // MenuItem newManTask = new MenuItem("newManualTask", "Manual Task",
+      // Arrays.asList(new CreateNodeOperation(MANUAL_TASK, position)), true);
+      // MenuItem newChildMenu = new MenuItem("new", "New", Arrays.asList(newAutTask, newManTask), "add", "0_new");
+      // return Lists.newArrayList(newChildMenu);
+      return null;
    }
 }

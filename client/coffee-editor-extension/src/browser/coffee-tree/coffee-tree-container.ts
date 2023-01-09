@@ -13,8 +13,7 @@ import { Command, CommandHandler } from '@theia/core';
 import { ApplicationShell, OpenerService } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { injectable } from '@theia/core/shared/inversify';
-
-import { Workflow } from './coffee-model';
+import { Family } from './coffee-model';
 import { CoffeeTreeEditorWidget } from './coffee-tree-editor-widget';
 
 export namespace CoffeeTreeCommands {
@@ -53,7 +52,7 @@ export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
     }
 
     getSelectedWorkflow(widget: CoffeeTreeEditorWidget): TreeEditor.Node | undefined {
-        if (widget && TreeEditor.Node.hasType(widget.selectedNode, Workflow.$type)) {
+        if (widget && TreeEditor.Node.hasType(widget.selectedNode, Family.$type)) {
             return widget.selectedNode;
         }
         return undefined;
@@ -74,7 +73,7 @@ export class OpenWorkflowDiagramCommandHandler implements CommandHandler {
     }
 
     protected getNotationUriString(uriString: string): string {
-        const coffeeFileExtension = '.coffee';
+        const coffeeFileExtension = '.basicfamily';
         const notationFileExtension = '.notation';
         if (uriString.endsWith(coffeeFileExtension)) {
             return uriString.replace(coffeeFileExtension, notationFileExtension);

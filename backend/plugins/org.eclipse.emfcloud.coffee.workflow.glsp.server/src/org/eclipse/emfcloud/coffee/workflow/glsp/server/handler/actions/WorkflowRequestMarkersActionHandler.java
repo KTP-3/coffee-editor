@@ -10,9 +10,7 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.actions;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelServerAccess;
 import org.eclipse.emfcloud.modelserver.glsp.actions.handlers.AbstractEMSActionHandler;
@@ -28,11 +26,12 @@ public class WorkflowRequestMarkersActionHandler extends AbstractEMSActionHandle
 
    @Override
    public List<Action> executeAction(final RequestMarkersAction action) {
-      try {
-         modelServerAccess.validateViaFramework().join();
-      } catch (IOException | InterruptedException | ExecutionException e) {
-         e.printStackTrace();
-      }
-      return listOf();
+      // try {
+      // modelServerAccess.validateViaFramework().join();
+      // } catch (IOException | InterruptedException | ExecutionException e) {
+      // e.printStackTrace();
+      // }
+      // return listOf();
+      return null;
    }
 }

@@ -10,18 +10,13 @@
  ********************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server.taskedit;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.wfgraph.TaskNode;
 import org.eclipse.glsp.server.features.contextactions.ContextActionsProvider;
-import org.eclipse.glsp.server.features.contextactions.SetAutoCompleteValueAction;
 import org.eclipse.glsp.server.features.directediting.LabeledAction;
 import org.eclipse.glsp.server.model.GModelState;
 import org.eclipse.glsp.server.types.EditorContext;
 
-import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 public class TaskEditContextActionProvider implements ContextActionsProvider {
@@ -37,17 +32,18 @@ public class TaskEditContextActionProvider implements ContextActionsProvider {
    @Override
    public List<? extends LabeledAction> getActions(final EditorContext editorContext) {
       String text = editorContext.getArgs().getOrDefault("text", "");
-      Optional<TaskNode> taskNode = modelState.getIndex()
-         .findElementByClass(editorContext.getSelectedElementIds().get(0), TaskNode.class);
-      if (taskNode.isEmpty()) {
-         return Collections.emptyList();
-      }
-      if (text.startsWith(DURATION_PREFIX)) {
-         return Collections.emptyList();
-      }
-      int duration = taskNode.get().getDuration();
-      return Lists.newArrayList(
-         new SetAutoCompleteValueAction(DURATION_PREFIX, "", DURATION_PREFIX + duration));
+      // Optional<Man> taskNode = modelState.getIndex()
+      // .findElementByClass(editorContext.getSelectedElementIds().get(0), Man.class);
+      // if (taskNode.isEmpty()) {
+      // return Collections.emptyList();
+      // }
+      // if (text.startsWith(DURATION_PREFIX)) {
+      // return Collections.emptyList();
+      // }
+      // int duration = taskNode.get().getDuration();
+      // return Lists.newArrayList(
+      // new SetAutoCompleteValueAction(DURATION_PREFIX, "", DURATION_PREFIX + duration));
+      return null;
    }
 
 }

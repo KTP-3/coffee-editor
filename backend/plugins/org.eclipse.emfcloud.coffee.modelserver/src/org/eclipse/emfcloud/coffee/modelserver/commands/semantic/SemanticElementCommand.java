@@ -14,16 +14,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emfcloud.coffee.Workflow;
-import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil;
 
 public abstract class SemanticElementCommand extends RecordingCommand {
 
-   protected final Workflow semanticModel;
+   // protected final Workflow semanticModel;
 
    public SemanticElementCommand(final EditingDomain domain, final URI modelUri) {
       super((TransactionalEditingDomain) domain);
-      this.semanticModel = SemanticCommandUtil.getModel(modelUri, domain);
+      // this.semanticModel = SemanticCommandUtil.getModel(modelUri, domain);
    }
 
 }

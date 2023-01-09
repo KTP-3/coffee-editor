@@ -12,8 +12,6 @@ package org.eclipse.emfcloud.coffee.modelserver.commands.semantic;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfcloud.coffee.Flow;
-import org.eclipse.emfcloud.coffee.modelserver.commands.util.SemanticCommandUtil;
 
 public class RemoveFlowCommand extends SemanticElementCommand {
 
@@ -26,8 +24,8 @@ public class RemoveFlowCommand extends SemanticElementCommand {
 
    @Override
    protected void doExecute() {
-      Flow flowToDelete = SemanticCommandUtil.getElement(semanticModel, semanticElementId, Flow.class);
-      semanticModel.getFlows().remove(flowToDelete);
+      // Flow flowToDelete = SemanticCommandUtil.getElement(semanticModel, semanticElementId, Flow.class);
+      // semanticModel.getFlows().remove(flowToDelete);
    }
 
 }

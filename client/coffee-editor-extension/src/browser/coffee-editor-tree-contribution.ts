@@ -13,7 +13,6 @@ import { CommandRegistry, MenuModelRegistry } from '@theia/core';
 import { NavigatableWidgetOptions, OpenerService, WidgetOpenerOptions } from '@theia/core/lib/browser';
 import URI from '@theia/core/lib/common/uri';
 import { inject, injectable } from 'inversify';
-
 import { CoffeeModelService } from './coffee-tree/coffee-model-service';
 import { CoffeeTreeCommands, OpenWorkflowDiagramCommandHandler } from './coffee-tree/coffee-tree-container';
 import { CoffeeTreeEditorConstants } from './coffee-tree/coffee-tree-editor-widget';
@@ -34,7 +33,7 @@ export class CoffeeTreeEditorContribution extends BaseTreeEditorContribution {
     readonly label = BaseTreeEditorWidget.WIDGET_LABEL;
 
     canHandle(uri: URI): number {
-        if (uri.path.ext === '.coffee') {
+        if (uri.path.ext === '.basicfamily') {
             return 1000;
         }
         return 0;

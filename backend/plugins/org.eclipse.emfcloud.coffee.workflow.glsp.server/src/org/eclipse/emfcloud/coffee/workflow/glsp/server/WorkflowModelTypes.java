@@ -10,30 +10,22 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.workflow.glsp.server;
 
+import org.eclipse.glsp.graph.DefaultTypes;
+
 public final class WorkflowModelTypes {
    private WorkflowModelTypes() {}
 
-   public static final String LABEL_HEADING = "label:heading";
-   public static final String LABEL_TEXT = "label:text";
-   public static final String COMP_HEADER = "comp:header";
-   public static final String LABEL_ICON = "label:icon";
-   public static final String WEIGHTED_EDGE = "edge:weighted";
-   public static final String ICON = "icon";
-   public static final String DECISION_NODE = "activityNode:decision";
-   public static final String MERGE_NODE = "activityNode:merge";
-   public static final String MANUAL_TASK = "task:manual";
-   public static final String AUTOMATED_TASK = "task:automated";
+   // public static final String TASK = DefaultTypes.NODE;
+   public static final String Man = DefaultTypes.NODE;
+   public static final String Woman = DefaultTypes.NODE_DIAMOND;
+   public static final String Link = DefaultTypes.EDGE;
 
    public static String toNodeType(final String type) {
       switch (type) {
-         case DECISION_NODE:
-            return "decisionNode";
-         case MERGE_NODE:
-            return "mergeNode";
-         case MANUAL_TASK:
-            return "manual";
-         case AUTOMATED_TASK:
-            return "automated";
+         case Man:
+            return "man";
+         case Woman:
+            return "woman";
          default:
             break;
       }

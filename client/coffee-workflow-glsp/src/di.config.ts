@@ -8,38 +8,27 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR MIT
  */
-import 'balloon-css/balloon.min.css';
-import 'sprotty/css/edit-label.css';
-import '../css/diagram.css';
-
 import {
     configureDefaultModelElements,
     configureModelElement,
     ConsoleLogger,
     createClientContainer,
     DeleteElementContextMenuItemProvider,
-    DiamondNodeView,
-    editLabelFeature,
     GridSnapper,
     LogLevel,
     overrideViewerOptions,
-    RectangularNodeView,
     RevealNamedElementActionProvider,
     RoundedCornerNodeView,
     SCompartment,
-    SCompartmentView,
-    SEdge,
-    SLabel,
-    SLabelView,
     StructureCompartmentView,
     TYPES
 } from '@eclipse-glsp/client';
-import { DefaultTypes } from '@eclipse-glsp/protocol';
+import 'balloon-css/balloon.min.css';
 import { Container, ContainerModule } from 'inversify';
-
+import 'sprotty/css/edit-label.css';
+import '../css/diagram.css';
 import { directTaskEditor } from './direct-task-editing/di.config';
-import { ActivityNode, CategoryNode, Icon, TaskNode, WeightedEdge } from './model';
-import { IconView, WorkflowEdgeView } from './workflow-views';
+import { ManNode, WomanNode } from './model';
 
 const workflowDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
     rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
@@ -50,21 +39,21 @@ const workflowDiagramModule = new ContainerModule((bind, unbind, isBound, rebind
     const context = { bind, unbind, isBound, rebind };
 
     configureDefaultModelElements(context);
-    configureModelElement(context, 'task:automated', TaskNode, RoundedCornerNodeView);
-    configureModelElement(context, 'task:manual', TaskNode, RoundedCornerNodeView);
-    configureModelElement(context, 'label:heading', SLabel, SLabelView, { enable: [editLabelFeature] });
-    configureModelElement(context, 'comp:comp', SCompartment, SCompartmentView);
-    configureModelElement(context, 'comp:header', SCompartment, SCompartmentView);
-    configureModelElement(context, 'label:icon', SLabel, SLabelView);
-    configureModelElement(context, DefaultTypes.EDGE, SEdge, WorkflowEdgeView);
-    configureModelElement(context, 'edge:weighted', WeightedEdge, WorkflowEdgeView);
-    configureModelElement(context, 'icon', Icon, IconView);
-    configureModelElement(context, 'activityNode:merge', ActivityNode, DiamondNodeView);
-    configureModelElement(context, 'activityNode:decision', ActivityNode, DiamondNodeView);
-    configureModelElement(context, 'activityNode:fork', ActivityNode, RectangularNodeView);
-    configureModelElement(context, 'activityNode:join', ActivityNode, RectangularNodeView);
+    configureModelElement(context, 'basicfamily:Man', ManNode, RoundedCornerNodeView);
+    configureModelElement(context, 'basicfamily:Woman', WomanNode, RoundedCornerNodeView);
+    // configureModelElement(context, 'label:heading', SLabel, SLabelView, { enable: [editLabelFeature] });
+    // configureModelElement(context, 'comp:comp', SCompartment, SCompartmentView);
+    // configureModelElement(context, 'comp:header', SCompartment, SCompartmentView);
+    // configureModelElement(context, 'label:icon', SLabel, SLabelView);
+    // configureModelElement(context, DefaultTypes.EDGE, SEdge, WorkflowEdgeView);
+    // configureModelElement(context, 'edge:weighted', WeightedEdge, WorkflowEdgeView);
+    // configureModelElement(context, 'icon', Icon, IconView);
+    // configureModelElement(context, 'activityNode:merge', ActivityNode, DiamondNodeView);
+    // configureModelElement(context, 'activityNode:decision', ActivityNode, DiamondNodeView);
+    // configureModelElement(context, 'activityNode:fork', ActivityNode, RectangularNodeView);
+    // configureModelElement(context, 'activityNode:join', ActivityNode, RectangularNodeView);
 
-    configureModelElement(context, 'category', CategoryNode, RoundedCornerNodeView);
+    // configureModelElement(context, 'category', CategoryNode, RoundedCornerNodeView);
     configureModelElement(context, 'struct', SCompartment, StructureCompartmentView);
 });
 

@@ -31,20 +31,20 @@ public class WorkflowToolPaletteItemProvider implements ToolPaletteItemProvider 
    @Override
    public List<PaletteItem> getItems(final Map<String, String> args) {
       LOGGER.info("Create palette");
-      return Lists.newArrayList(tasks(), nodes(), edges());
+      return Lists.newArrayList(nodes(), edges());
    }
 
-   private PaletteItem tasks() {
-      PaletteItem createAutomatedTask = node(WorkflowModelTypes.AUTOMATED_TASK, "Automated Task", "settings-gear");
-      PaletteItem createManualTask = node(WorkflowModelTypes.MANUAL_TASK, "Manual Task", "account");
-
-      List<PaletteItem> nodes = Lists.newArrayList(createAutomatedTask, createManualTask);
-      return PaletteItem.createPaletteGroup("task-group", "Tasks", nodes, "symbol-property", "a");
-   }
+   // private PaletteItem tasks() {
+   // PaletteItem createAutomatedTask = node(WorkflowModelTypes.AUTOMATED_TASK, "Automated Task", "settings-gear");
+   // PaletteItem createManualTask = node(WorkflowModelTypes.MANUAL_TASK, "Manual Task", "account");
+   //
+   // List<PaletteItem> nodes = Lists.newArrayList(createAutomatedTask, createManualTask);
+   // return PaletteItem.createPaletteGroup("task-group", "Tasks", nodes, "symbol-property", "a");
+   // }
 
    private PaletteItem nodes() {
-      PaletteItem createDecisionNode = node(WorkflowModelTypes.DECISION_NODE, "Decision Node", "chevron-up");
-      PaletteItem createMergeNode = node(WorkflowModelTypes.MERGE_NODE, "Merge Node", "chevron-down");
+      PaletteItem createDecisionNode = node(WorkflowModelTypes.Man, "Man Node", "chevron-up");
+      PaletteItem createMergeNode = node(WorkflowModelTypes.Woman, "Woman Node", "chevron-down");
 
       List<PaletteItem> nodes = Lists.newArrayList(createDecisionNode, createMergeNode);
       return PaletteItem.createPaletteGroup("node-group", "Nodes", nodes, "symbol-property", "b");
@@ -52,7 +52,7 @@ public class WorkflowToolPaletteItemProvider implements ToolPaletteItemProvider 
 
    private PaletteItem edges() {
       PaletteItem createFlow = edge(DefaultTypes.EDGE, "Flow", "chrome-minimize");
-      PaletteItem createWeightedFlow = edge(WorkflowModelTypes.WEIGHTED_EDGE, "Weighted Flow", "grabber");
+      PaletteItem createWeightedFlow = edge(WorkflowModelTypes.Link, "Link", "grabber");
 
       List<PaletteItem> edges = Lists.newArrayList(createFlow, createWeightedFlow);
       return PaletteItem.createPaletteGroup("edge-group", "Edges", edges, "symbol-property", "c");

@@ -10,7 +10,6 @@
  */
 import { ComparisonExtensionConfiguration } from '@eclipsesource/comparison-extension/lib/browser/comparison-extension-configuration';
 import { ContainerModule } from 'inversify';
-
 import { CoffeeComparisonBackendConfiguration } from './coffee-comparison-backend-configuration';
 
 export default new ContainerModule(bind => {

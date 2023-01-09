@@ -10,23 +10,18 @@
  ******************************************************************************/
 package org.eclipse.emfcloud.coffee.modelserver.commands.compound;
 
-import java.util.function.Supplier;
-
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emfcloud.coffee.Node;
-import org.eclipse.emfcloud.coffee.modelserver.commands.semantic.AddDecisionNodeCommand;
-import org.eclipse.emfcloud.modelserver.glsp.notation.commands.AddShapeCommand;
 import org.eclipse.glsp.graph.GPoint;
 
 public class AddDecisionNodeCompoundCommand extends CompoundCommand {
 
    public AddDecisionNodeCompoundCommand(final EditingDomain domain, final URI modelUri, final GPoint classPosition) {
       // Chain semantic and notation command
-      AddDecisionNodeCommand command = new AddDecisionNodeCommand(domain, modelUri);
-      this.append(command);
-      Supplier<Node> semanticResultSupplier = () -> command.getNode();
-      this.append(new AddShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
+      // AddDecisionNodeCommand command = new AddDecisionNodeCommand(domain, modelUri);
+      // this.append(command);
+      // Supplier<Node> semanticResultSupplier = () -> command.getNode();
+      // this.append(new AddShapeCommand(domain, modelUri, classPosition, semanticResultSupplier));
    }
 }

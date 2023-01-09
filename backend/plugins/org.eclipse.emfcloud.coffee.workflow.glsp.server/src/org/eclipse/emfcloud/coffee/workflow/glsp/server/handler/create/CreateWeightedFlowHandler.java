@@ -13,22 +13,34 @@ package org.eclipse.emfcloud.coffee.workflow.glsp.server.handler.create;
 import java.util.concurrent.CompletableFuture;
 
 import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelServerAccess;
-import org.eclipse.emfcloud.coffee.workflow.glsp.server.WorkflowModelTypes;
 import org.eclipse.emfcloud.modelserver.client.Response;
 
 public class CreateWeightedFlowHandler extends AbstractCreateEdgeHandler {
 
-   public CreateWeightedFlowHandler() {
-      super(WorkflowModelTypes.WEIGHTED_EDGE);
+   public CreateWeightedFlowHandler(final String type) {
+      super(type);
+      // TODO Auto-generated constructor stub
    }
-
-   @Override
-   public String getLabel() { return "Weighted Edge"; }
 
    @Override
    protected CompletableFuture<Response<String>> addFlow(final WorkflowModelServerAccess modelAccess,
-      final String sourceId, final String targetId) {
-      return modelAccess.addWeightedFlow(sourceId, targetId);
+      final String sourceId,
+      final String targetId) {
+      // TODO Auto-generated method stub
+      return null;
    }
+
+   // public CreateWeightedFlowHandler() {
+   // super(WorkflowModelTypes.WEIGHTED_EDGE);
+   // }
+   //
+   // @Override
+   // public String getLabel() { return "Weighted Edge"; }
+   //
+   // @Override
+   // protected CompletableFuture<Response<String>> addFlow(final WorkflowModelServerAccess modelAccess,
+   // final String sourceId, final String targetId) {
+   // return modelAccess.addWeightedFlow(sourceId, targetId);
+   // }
 
 }
